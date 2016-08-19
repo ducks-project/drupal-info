@@ -1,7 +1,7 @@
 {
     "name": "ducks-project/drupal-info",
     "description": "Drupal info file parser",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "type": "library",
     "keywords": ["Drupal", "Parser", "info", "file"],
     "homepage": "https://github.com/ducks-project/drupal-info/",
