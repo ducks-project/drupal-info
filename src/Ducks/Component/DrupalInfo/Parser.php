@@ -21,7 +21,7 @@ namespace Ducks\Component\DrupalInfo {
                     (\'(?:[^\']|(?<=\\\\)\')*\')| # Single-quoted string, which may contain slash-escaped quotes/slashes
                     ([^\r\n]*?)                   # Non-quoted string
                 )\s*$                           # Stop at the next end of a line, ignoring trailing whitespace
-                @msx', $data, $matches, PREG_SET_ORDER)) {
+                @msx', $input, $matches, PREG_SET_ORDER)) {
                 foreach ($matches as $match) {
                     // Fetch the key and value string.
                     $i = 0;
