@@ -6,6 +6,8 @@ namespace Ducks\Component\DrupalInfo {
 
         /**
          * @see drupal_parse_info_format
+         * or parse_ini_file
+         * or get_cfg_var
          */
         public static function parse($input) {
             $info = array();
