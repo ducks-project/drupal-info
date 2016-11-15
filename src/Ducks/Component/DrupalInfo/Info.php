@@ -28,6 +28,43 @@ namespace Ducks\Component\DrupalInfo {
         /**
          *
          */
+        public function __call($name, $arguments) {
+            if (strpos($name, 'get') === 0) {
+                return $this->get(strtolower(substr($name, 3)));
+            }
+            elseif (strpos($name, 'set') === 0) {
+                return $this->set(strtolower(substr($name, 3)), reset($arguments));
+            }
+        }
+
+        /**
+         *
+         */
+        protected function get($name) {
+            if (!empty($this->availableKeys) && !in_array($name, $this->availableKeys)) {
+                throw new \OutOfBoundsException('['.$name.'] is not available for the class: '.__CLASS__);
+
+            }
+            return (isset($this->config[$name])) ? $this->config[$name] : null;
+        }
+
+        /**
+         *
+         */
+        protected function set($name, $value) {
+            if (!empty($this->availableKeys) && !in_array($name, $this->availableKeys)) {
+                throw new \OutOfBoundsException('['.$name.'] is not available for the class: '.__CLASS__);
+
+            }
+            if (isset($this->config[$name])) {
+                $this->config[$name] = $value;
+            }
+            return $this;
+        }
+
+        /**
+         *
+         */
         public function valid() {
             return true;
         }
