@@ -2,6 +2,8 @@
 
 namespace Ducks\Component\DrupalInfo {
 
+    use Symfony\Component\Yaml\Yaml as YamlDumper;
+
     /**
      * @todo a save method?
      */
@@ -112,6 +114,15 @@ namespace Ducks\Component\DrupalInfo {
         public function fputinfo(array $config) {
             $dumper = new Dumper();
             $output = $dumper->dump($config);
+            $splFileObject = $this->openFile('w', false);
+            return $splFileObject->fwrite($output);
+        }
+
+        /**
+         * @todo @see fputinfo
+         */
+        public function fputyaml(array $config) {
+            $output = YamlDumper::dump($config);
             $splFileObject = $this->openFile('w', false);
             return $splFileObject->fwrite($output);
         }

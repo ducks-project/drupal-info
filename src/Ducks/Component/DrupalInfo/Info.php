@@ -93,8 +93,19 @@ namespace Ducks\Component\DrupalInfo {
             if (empty($path)) {
                 $path = getcwd();
             }
-            $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.'.info');
-            $file->fputinfo($this->getConfig());
+
+            switch ($this->getCore()) {
+                case '8.x':
+                    $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.'.info.yml');
+                    $file->fputyaml($this->getConfig());
+                    break;
+
+                default:
+                    $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.'.info');
+                    $file->fputinfo($this->getConfig());
+                    break;
+            }
+
             return $file;
         }
 
