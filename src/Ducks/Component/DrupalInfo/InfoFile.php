@@ -128,6 +128,15 @@ namespace Ducks\Component\DrupalInfo {
         }
 
         /**
+         * @todo @see fgetinfo
+         * like http://php.net/manual/fr/splfileobject.fgetcsv.php
+         */
+        public function fgetyaml() {
+            $this->rewind();
+            return ($this->getSize()) ? YamlDumper::parse($this->getSplFileObject()->fread($this->getSize())) : array();
+        }
+
+        /**
          * @todo
          */
         public function getInfo() {
