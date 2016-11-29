@@ -13,6 +13,7 @@ namespace Ducks\Component\DrupalInfo {
         public function __construct(array $config) {
             $this->availableKeys = array(
                 'name',
+                'type',
                 'core',
                 'screenshot',
                 'description',
@@ -25,6 +26,7 @@ namespace Ducks\Component\DrupalInfo {
                 'scripts',
                 'php'
             );
+            $config['type'] = 'theme';
             parent::__construct($config);
         }
 

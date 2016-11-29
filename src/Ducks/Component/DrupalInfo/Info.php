@@ -90,6 +90,14 @@ namespace Ducks\Component\DrupalInfo {
             if (!$this->valid()) {
                 throw new \Exception('Config invalid'); // TODO own exception
             }
+
+            $config = $this->getConfig();
+            foreach ($config as $key => $value) {
+                if (empty($value)) {
+                    unset($config[$key]);
+                }
+            }
+
             if (empty($path)) {
                 $path = getcwd();
             }
@@ -97,12 +105,12 @@ namespace Ducks\Component\DrupalInfo {
             switch ($this->getCore()) {
                 case '8.x':
                     $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.'.info.yml');
-                    $file->fputyaml($this->getConfig());
+                    $file->fputyaml($config);
                     break;
 
                 default:
                     $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.'.info');
-                    $file->fputinfo($this->getConfig());
+                    $file->fputinfo($config);
                     break;
             }
 
