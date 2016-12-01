@@ -102,7 +102,7 @@ namespace Ducks\Component\DrupalInfo {
                 $path = getcwd();
             }
 
-            $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.$this->getExtension());
+            $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.$this->getFileExtension());
             if ($file->getExtension() == 'yml') {
                 $file->fputyaml($config);
             }
