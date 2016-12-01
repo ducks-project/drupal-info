@@ -102,19 +102,31 @@ namespace Ducks\Component\DrupalInfo {
                 $path = getcwd();
             }
 
-            switch ($this->getCore()) {
-                case '8.x':
-                    $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.'.info.yml');
-                    $file->fputyaml($config);
-                    break;
-
-                default:
-                    $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.'.info');
-                    $file->fputinfo($config);
-                    break;
+            $file = new InfoFile($path.DIRECTORY_SEPARATOR.$filename.$this->getExtension());
+            if ($file->getExtension() == 'yml') {
+                $file->fputyaml($config);
+            }
+            else {
+                $file->fputinfo($config);
             }
 
             return $file;
+        }
+
+        /**
+         *
+         */
+        public function getFileExtension() {
+            switch ($this->getCore()) {
+                case '9.x':
+                case '8.x':
+                    $extension = '.info.yml';
+                    break;
+                default:
+                    $extension = '.info';
+                    break;
+            }
+            return $extension;
         }
 
     }
