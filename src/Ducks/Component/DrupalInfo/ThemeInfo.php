@@ -14,20 +14,58 @@ namespace Ducks\Component\DrupalInfo {
             $this->availableKeys = array(
                 'name',
                 'type',
-                'core',
-                'screenshot',
                 'description',
+                'package',
                 'version',
+                'core',
+
                 'base theme',
+                'screenshot',
+
+                'libraries',
+                'libraries-override',
+                'libraries-extend',
+
+                'stylesheets',
                 'regions',
                 'features',
                 'settings',
-                'stylesheets',
+
                 'scripts',
                 'php'
             );
             $config['type'] = 'theme';
             parent::__construct($config);
+        }
+
+        /**
+         *
+         */
+        public function getLibrariesOverride() {
+            return $this->config['libraries-override'];
+        }
+
+        /**
+         *
+         */
+        public function setLibrariesOverride(array $librariesOverride) {
+            $this->config['libraries-override'] = $librariesOverride;
+            return $this;
+        }
+
+        /**
+         *
+         */
+        public function getLibrariesExtend() {
+            return $this->config['libraries-extend'];
+        }
+
+        /**
+         *
+         */
+        public function setLibrariesExtend(array $librariesExtend) {
+            $this->config['libraries-extend'] = $librariesExtend;
+            return $this;
         }
 
         /**
