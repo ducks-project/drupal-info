@@ -32,7 +32,12 @@ namespace Ducks\Component\DrupalInfo {
                 'settings',
 
                 'scripts',
-                'php'
+                'php',
+
+                // d8
+                'stylesheets-remove',
+                'stylesheets-override',
+                'regions_hidden',
             );
             $config['type'] = 'theme';
             parent::__construct($config);
@@ -65,6 +70,36 @@ namespace Ducks\Component\DrupalInfo {
          */
         public function setLibrariesExtend(array $librariesExtend) {
             $this->config['libraries-extend'] = $librariesExtend;
+            return $this;
+        }
+
+        /**
+         * @deprecated
+         */
+        public function getStylesheetsRemove() {
+            return $this->config['stylesheets-remove'];
+        }
+
+        /**
+         * @deprecated
+         */
+        public function setStylesheetsRemove(array $stylesheetsRemove) {
+            $this->config['stylesheets-remove'] = $stylesheetsRemove;
+            return $this;
+        }
+
+        /**
+         * @deprecated
+         */
+        public function getStylesheetsOverride() {
+            return $this->config['stylesheets-override'];
+        }
+
+        /**
+         * @deprecated
+         */
+        public function setStylesheetsOverride(array $stylesheetsOverride) {
+            $this->config['stylesheets-override'] = $stylesheetsOverride;
             return $this;
         }
 

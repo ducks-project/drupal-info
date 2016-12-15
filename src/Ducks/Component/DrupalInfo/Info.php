@@ -56,9 +56,7 @@ namespace Ducks\Component\DrupalInfo {
                 throw new \OutOfBoundsException('['.$name.'] is not available for the class: '.__CLASS__);
 
             }
-            if (isset($this->config[$name])) {
-                $this->config[$name] = $value;
-            }
+            $this->config[$name] = $value;
             return $this;
         }
 
